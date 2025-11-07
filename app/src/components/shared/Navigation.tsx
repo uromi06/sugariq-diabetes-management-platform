@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
-import { Activity, LogOut, Home, User } from 'lucide-react';
+import { Activity, LogOut, Home, User, Calendar } from 'lucide-react';
 
 const Navigation: React.FC = () => {
   const { user, logout, isAuthenticated } = useAuth();
@@ -51,6 +51,13 @@ const Navigation: React.FC = () => {
                 >
                   <Activity className="h-5 w-5" />
                   <span className="font-medium">My Health</span>
+                </Link>
+                <Link
+                  to="/patient/appointments"
+                  className="flex items-center space-x-2 text-gray-700 hover:text-primary-600 transition-colors"
+                >
+                  <Calendar className="h-5 w-5" />
+                  <span className="font-medium">Appointments</span>
                 </Link>
               </>
             )}

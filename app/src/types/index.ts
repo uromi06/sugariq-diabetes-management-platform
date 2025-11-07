@@ -78,3 +78,15 @@ export interface Appointment {
   status: 'scheduled' | 'completed' | 'cancelled';
   notes?: string;
 }
+
+export interface Medication {
+  id: string;
+  name: string;
+  dosage: string;
+  frequency: string;
+  startDate: string;
+  endDate?: string;
+  prescribedBy: string;
+  instructions?: string;
+  status: 'active' | 'discontinued' | 'completed';
+}

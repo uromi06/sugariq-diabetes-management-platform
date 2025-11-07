@@ -6,11 +6,13 @@ import { getTranscriptsByPatientId } from '../../data/mockTranscripts';
 import { ArrowLeft } from 'lucide-react';
 import OverviewTab from './OverviewTab';
 import HealthDataTab from './HealthDataTab';
-import TranscriptionsTab from './TranscriptionsTab';
+import MedicationsTab from './MedicationsTab';
+import AppointmentsTab from './AppointmentsTab';
 import AIChatTab from './AIChatTab';
 import LiveSessionTab from './LiveSessionTab';
+import ExportTab from './ExportTab';
 
-type TabType = 'overview' | 'health' | 'transcriptions' | 'chat' | 'live';
+type TabType = 'overview' | 'health' | 'medications' | 'appointments' | 'chat' | 'live' | 'export';
 
 const PatientDetail: React.FC = () => {
   const { patientId } = useParams<{ patientId: string }>();
@@ -35,9 +37,11 @@ const PatientDetail: React.FC = () => {
   const tabs: { id: TabType; label: string }[] = [
     { id: 'overview', label: 'Overview' },
     { id: 'health', label: 'Health Data' },
-    { id: 'transcriptions', label: 'Transcriptions' },
+    { id: 'medications', label: 'Medications' },
+    { id: 'appointments', label: 'Appointments' },
     { id: 'chat', label: 'AI Chat' },
     { id: 'live', label: 'Live Session' },
+    { id: 'export', label: 'Export' },
   ];
 
   return (
@@ -88,9 +92,11 @@ const PatientDetail: React.FC = () => {
       <div>
         {activeTab === 'overview' && <OverviewTab patient={patient} healthData={healthData} />}
         {activeTab === 'health' && <HealthDataTab patient={patient} healthData={healthData} />}
-        {activeTab === 'transcriptions' && <TranscriptionsTab transcripts={transcripts} />}
+        {activeTab === 'medications' && <MedicationsTab patient={patient} />}
+        {activeTab === 'appointments' && <AppointmentsTab patient={patient} transcripts={transcripts} />}
         {activeTab === 'chat' && <AIChatTab patient={patient} healthData={healthData} />}
         {activeTab === 'live' && <LiveSessionTab patient={patient} />}
+        {activeTab === 'export' && <ExportTab patient={patient} healthData={healthData} transcripts={transcripts} />}
       </div>
     </div>
   );
